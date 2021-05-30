@@ -9,6 +9,12 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import Button from '@material-ui/core/Button'
 
+const source = {
+  sharepoint: "Share Point",
+  box: "Box",
+  onedrive: "One Drive"
+}
+
 const OnDemandSync = () => {
   const location = useLocation()
   const [showDialog, setShowDialog] = useState(false)
@@ -68,6 +74,7 @@ const OnDemandSync = () => {
     const dataToMongoDB = {
       execute_response: status,
       time: getDate,
+      api_name: source[dataSource]
     }
     try {
       const response = await axios
@@ -125,6 +132,7 @@ const OnDemandSync = () => {
           <thead>
             <tr>
               <th>ID</th>
+              <th>API Name</th>
               <th>Execution_Time</th>
               <th>Status</th>
             </tr>
@@ -133,6 +141,7 @@ const OnDemandSync = () => {
             {responses.map((res) => (
               <tr key={res._id}>
                 <td>{res._id}</td>
+                <td>{res.api_name}</td>
                 <td>{res.time}</td>
                 <td>{res.execute_response}</td>
               </tr>
