@@ -132,7 +132,7 @@ const OnDemandSync = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>API Name</th>
+              <th>API Source</th>
               <th>Execution_Time</th>
               <th>Status</th>
             </tr>
