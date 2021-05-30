@@ -24,7 +24,10 @@ const OnDemandSync = () => {
   const generateAPIURL = () => {
     const data = Constants.data
     const fields = data?.filter((d) => d.name === dataSource);
-    return fields && fields[0]
+     if(fields && fields.length > 0){
+     return fields[0]
+   }
+   return fields.push({url: '', token: ''})
   }
 
   const URL =  generateAPIURL().url || ''
