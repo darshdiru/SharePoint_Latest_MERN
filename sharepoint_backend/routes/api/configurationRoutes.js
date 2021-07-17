@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Configuration = require('../../models/Configuration');
 const Execute = require('../../models/Execute');
+const Box = require('../../models/Box');
 
 
 router.get('/test', (req, res) => res.send('connection route testing!'));
@@ -16,6 +17,12 @@ router.get('/fetch', (req, res) => {
 router.post('/connect', (req, res) => {
     Configuration.create(req.body)
     .then(conn => res.json({ msg: 'Configuration added successfully' }))
+    .catch(err => res.status(400).json({ error: 'Unable to add configuration' }));
+});
+
+router.post('/box', (req, res) => {
+    Box.create(req.body)
+    .then(conn => res.json({ msg: 'box added successfully' }))
     .catch(err => res.status(400).json({ error: 'Unable to add configuration' }));
 });
 
